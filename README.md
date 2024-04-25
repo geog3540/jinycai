@@ -1,2 +1,1 @@
-# jinycai
-GEOG3540/jinycai - Jinyi Cai
+# This is a repository for my Geovisualization Portfolio
