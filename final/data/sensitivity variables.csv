@@ -1,0 +1,21 @@
+﻿field,algorithm,Variable Name
+Total_POP,B01003_001E,Total Population
+QASIAN,B03002_006E / B03002_001E ,% Asian Population
+QBLACK,B03002_004E / B03002_001E,% Black Population
+QHISP,B03002_012E / B03002_001E,% Hispanic Population
+QNATIVE,B03002_005E / B03002_001E,% Native American Population
+QAGEDEP,(B06001_002E + B09020_001E) / B01003_001E,% of Population Under Age 5 or Over Age 65
+QPUNIT,B25008_001E / B25002_002E,Number of People Per Unit
+QRENTER,B25003_003E /B25002_001E,% Renter Population 
+QFEMALE,B01001_026E / B01003_001E,% Female Population
+QUNOCCHU,B25002_003E / B25002_001E,% Unoccupied Housing Units
+QUNEMPLOY,(B23022_025E + B23022_049E) /B23022_001E,% of the Civilian Laborforce that is Unemployed
+QPOVTY,B17021_002E / B17021_001E,% Impoverished Population (Income in the past 12 months below poverty level)
+QMOHO,B25024_010E / B25024_001E,% Housing Units that are Mobile Home
+QSSBEN,B19055_002E / B19055_001E,% Social Security Beneficiaries
+PERCAP,B19025_001E / B25008_001E,Per Capita Income
+QHSEBURDEN,(B25106_006E+ B25106_010E+ B25106_014E+ B25106_018E+ B25106_022E+ B25106_028E+ B25106_032E+ B25106_036E+ B25106_040E+ B25106_044E)/ B25106_001E,% Percent of households spending more than 40% of their income on housing costs
+QNOINSURED,(B27001_005E+B27001_008E+ B27001_011E+ B27001_014E+ B27001_017E+ B27001_020E + B27001_023E+ B27001_026E+ B27001_029E+ B27001_033E+ B27001_036E+ B27001_039E+ B27001_042E+ B27001_045E)/ B27001_001E,% Population with no insurance
+QESL,(B06007_005E + B06007_008E) / B06007_001E,% Population Speaking English Less than Very Well
+QNOBD,(B16010_001E - B16010_041E)/B16010_001E,% Population with no bachelor's degree over 25
+QED12LES,B16010_002E /B16010_001E,% Population with Less than 12th Grade Education over 25
