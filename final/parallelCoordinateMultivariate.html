@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Multivariate Visualization</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- import JQuery and Bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+  <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+
+  <!-- D3.js -->
+  <link rel="stylesheet" href="css/d3.parcoords.css">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <!-- D3 legend to make it easier -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.js"></script>
+  <script src="js/d3.parcoords.js"></script>
+  <script src="js/colorbrewer.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span
+            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+            class="icon-bar"></span></button>
+        <a class="navbar-brand" href="/finalProject.html">Jinyi Cai's Geovisualization Final Project Portfolio</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <ul class="nav navbar-nav">
+
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+              aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="finalProject.html">Home</a></li>
+              <li><a href="https://cjycathy.github.io/">About</a></li>
+              <li><a href="/files/CV-Jinyi Cai.pdf">CV</a></li>
+              <li class="divider"></li>
+              <li><a href="mailto:jinyi-cai@uiowa.edu">Contact</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <div style="height:0px;" id="info-label" class="col-md-6 portfolio-item"></div>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Header -->
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row panel-header">
+          <div class="col-lg-12">
+            <h2 class="page-header">Multivariate Map - Social Vulnerability, Nitrate Exposure and Colorectal Cancer Risk</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-9">
+            <!-- Change the map description below-->
+            <p><b>Environmental pollution affects everyone in the place, but not everyone is affected equally.</b> 
+              Social Vulnerability analysis aims to identify the population in places that are more susceptible to environmental hazard. 
+            This could help policymakers better prioritize resources for the vulnerable population.</p>
+            <p>This map helps you explore the multivariate relationships among relative risk of colorectal cancer, nitrate concentration, clinical care
+              and different socio-demographic characteristics in Iowa state by census tract level.              
+            </p>
+            <ul>
+              <li>The <u>choropleth map</u> is symbolized by the variable from the categories of cancer risk, nitrate exposure and demographics  
+                with quantile classification. You can change the variable by selecting it from the dropdown menu on the right side.
+                If you want to know the details of a tract, you can hover your mouse on the tracts in the map. The hovered tract will be highlighted with 
+                black border and the correspoingding line on the parallel coordinates will be emphasized by setting other variables grey.
+              </li>
+              <li>The <u>parallel coordinates</u> below the map visualize the value of each variable at each census tract.
+                You can brush the variable axes to select ideal value ranges and explore the distribution of these values.
+                If you want to clear the selection, you can click on the axis outside of the selected range.
+              </li>
+              <li>You can find the explanation of each variable by hovering over the "Variable Information" button on the right side. 
+              </li>
+            </ul>
+
+            <!-- Change the map interpretation below-->
+            <p><b>Questions:</b></p>
+            <ol>
+              <li>
+                Where are people experiencing high nitrate pollution (>5mg/L) exposure?
+              </li>
+              <li>
+                How does the clinical care rankings vary across these regions? Additionally, which areas have a relatively low level of clinical care?
+              </li>
+              <li>
+                What are the population characteristics of those areas?
+              </li>
+              <li>
+                Which locations exhibit both elevated nitrate concentrations and a high risk of colorectal cancer? Does the population characteristics change in these areas?
+              </li>
+              <li>
+                Do you find any outliers?
+              </li>
+
+            </ol>
+          </div>
+          <div class="col-lg-2">
+
+            <div class="row">
+              <div id="dropdown"></div>
+              <svg id="legend">
+              </svg>
+              <div id="label">Variables information
+                <div id="info-box"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- /.row -->
+
+          <!-- /.row -->
+          <!-- Projects Row -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-md-12 portfolio-item">
+                <div id="map" />
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+
+          <br style="margin-top:10px;">
+
+          <!-- Projects Row -->
+          <div class="row">
+            <div class="col-lg-12 portfolio-item">
+              <div class="col-md-12 portfolio-item">
+                <div id="pcp" class="parcoords" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <hr>
+    <br>
+
+    <!-- Footer -->
+    <footer>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>Copyright &copy; Jinyi Cai 2024</p>
+        </div>
+      </div>
+      <!-- /.row -->
+    </footer>
+
+    <!--link to main JavaScript file-->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

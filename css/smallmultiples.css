@@ -10,6 +10,9 @@ body {
   border: thin black solid;
   margin-top: 70px;
 }
+.navbar-nav {
+  float: right;
+}
 .mapButtons {
   vertical-align: middle;
 }
@@ -39,10 +42,10 @@ body {
   padding: 2px;
   margin: 2px;
 }
-.legendQuant {
+/* .legendQuant {
   font-weight: normal;
   font-size: 0.6rem;
-}
+} */
 
 button.active {
   background: #e3e3e3;

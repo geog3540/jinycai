@@ -5,12 +5,12 @@
 
 	<!-- CSS -->
 	<!-- Bootstrap -->
-	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<!-- import google 'Raleway' font -->
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,900" rel="stylesheet">
 
 	<!-- Bootstrap core CSS -->
-	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="/css/smallmultiples.css">
 
 
@@ -22,14 +22,15 @@
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 	<!-- D3 legend to make it easier -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.21.0/d3-legend.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.21.0/d3-legend.min.js"></script> -->
+	<script src="js/d3-legend.js"></script>
 	<!-- Simple statistics for Jenks natural breaks -->
 	<script src="https://unpkg.com/simple-statistics@7.0.7/dist/simple-statistics.min.js"></script>
 
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 		  <a class="navbar-brand" href="#">Jinyi Cai's Geovisualization Portfolio</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +39,7 @@
 		  <div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
 			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home
+				<a class="nav-link" href="finalProject.html">Home
 				  <span class="sr-only">(current)</span>
 				</a>
 			  </li>
@@ -54,6 +55,36 @@
 			</ul>
 		  </div>
 		</div>
+	  </nav> -->
+
+	  <nav class="navbar navbar-default">
+		<div class="container container-fluid">
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span
+				class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+				class="icon-bar"></span></button>
+			<a class="navbar-brand" href="/finalProject.html">Jinyi Cai's Geovisualization Final Project Portfolio</a>
+		  </div>
+		  <!-- Collect the nav links, forms, and other content for toggling -->
+		  <div class="collapse navbar-collapse" id="defaultNavbar1">
+			<ul class="nav navbar-nav">
+	
+			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+				  aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="finalProject.html">Home</a></li>
+				  <li><a href="https://cjycathy.github.io/">About</a></li>
+				  <li><a href="/files/CV-Jinyi Cai.pdf">CV</a></li>
+				  <li class="divider"></li>
+				  <li><a href="mailto:jinyi-cai@uiowa.edu">Contact</a></li>
+				</ul>
+			  </li>
+			</ul>
+	
+		  </div>
+		  <!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
 	  </nav>
 
 	<div class="container">
@@ -107,9 +138,9 @@
 					<div id="divHist3"></div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Hispanics</h3><p>Percentage of Hispanics.</p>
+					<!-- <h3 class='mapTitle'>Hispanics</h3><p>Percentage of Hispanics.</p>
 					<div id="divMap4"></div>
-					<div id="divHist4"></div>
+					<div id="divHist4"></div> -->
 				</div>
 			</div>
 		</div>
@@ -134,7 +165,7 @@
 	var legendX = 0, legendY = 0.6
 
 	// id attribute and the name attribute to be used in the tooltip
-	var idAttribute = 'FIPS', nameAttribute = 'Tract', countyAttribute = 'COUNTY';
+	var idAttribute = 'GEOID', nameAttribute = 'tract', countyAttribute = 'County';
 
 	// Find the abbreviations of color names from https://colorbrewer2.org/
 	var colors =  colorbrewer.YlGnBu;
@@ -261,6 +292,7 @@
 			// Set the buttons up for interactivity
 			buttons.forEach(function(d) {
 				d3.select(d.btn).on('click', function() {
+					current_scale = d.scale;
 					d3.selectAll('.btn').classed('active', false);
 					d3.select(this).classed('active', true);
 					var buttonid = d3.select(this).node().id;
@@ -276,14 +308,16 @@
 						rescale(polygons);
 					}else{
 						rescale(polygons);
-					}
-
-					current_scale = d.scale;
-					
+					}	
 				});
 			});
 			d3.select('#classDropdown').on('input', function() {
-				rescale(polygons);
+				var buttonid = d3.select(this).node().id;
+				if(buttonid == "ckmButton"){
+					rescaleCkm(polygons);
+				}else{
+					rescale(polygons);
+				}
 			});
 
 			// For each input attribute make a map and a histogram
@@ -434,7 +468,8 @@
 						// select the polygon by its id attribute
 						map.select('.polygon'+id)
 						.moveToFront()
-						.style('stroke', 'black')
+						.style('stroke', 'red')
+						.style('stroke-width', '1')
 						.style('opacity', '1');
 
 						// map tooltip
@@ -475,6 +510,7 @@
 
 						map.select(('.polygon'+id))
 						.style('stroke', "#dadada")
+						.style('stroke-width', '0.1')
 						.style('opacity', '0.85');
 						// map tooltip
 						d3.select(tip)
@@ -499,7 +535,7 @@
 					.domain([min, max])
 					.range(color_scale);
 
-					var naturalbreaks = ss.ckmeans(data, color_scale.length + 1).map(v => v.pop())
+					var naturalbreaks = ss.ckmeans(data, color_scale.length - 1).map(v => v.pop())
 					jenks_scale.domain(naturalbreaks).range(color_scale);
 					linear_scale.domain([min, max]).range(color_scale);
 					hist_scale.domain([min, max]);			// set the histogram up dynamically
@@ -514,17 +550,24 @@
 
 				function rescale(data) {
 					allVariables = [];
-					// function to restyle all of the maps
+					
+					// Get the whole value of the charts
 					charts.forEach(function(d) {
 						var hist_var = data.features.filter(function(e) { return +e.properties[d.var]; })
 						.map(function(e) { return +e.properties[d.var]; });
-
 						allVariables = allVariables.concat(hist_var);
+					});
 
+					// Set scale for each chart (diff vars)
+					setScales(allVariables);
+
+					// function to restyle all of the maps
+					charts.forEach(function(d) {
 						// map polygons
 						var map = d3.select(d.map).selectAll('.polygons')
 						.transition(250)
-						.style('fill', function(e) { return current_scale(+e.properties[d.var]); });
+						.style('fill', function(e) { return current_scale(+e.properties[d.var]); })
+						.style('stroke-width', "0.1");
 						// histogram
 						var hist = d3.select(d.hist).selectAll('.bar')
 						.transition(250)
@@ -542,9 +585,7 @@
 
 						d3.select(d.map).select('.legendQuant').call(holdLegend.scale(current_scale));
 					});
-
-					// Set scale for each chart (diff vars)
-					setScales(allVariables);
+					
 				} // end rescale, apply to buttons
 
 				function rescaleCkm(data) {
@@ -573,7 +614,8 @@
 						.orient('vertical')
 						.labelFormat(d3.format(d.form))
 						.useClass(false)
-						.scale(current_scale);
+						.scale(current_scale)
+						.labels(d3.legendHelpers.thresholdLabels); // Changes the labels so the first one label says "Less than first-threshold" and the last one says "More than last-threshold".
 
 						d3.select(d.map).select('.legendQuant').call(holdLegend.scale(current_scale));
 					});
