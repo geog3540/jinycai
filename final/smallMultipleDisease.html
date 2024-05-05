@@ -120,12 +120,12 @@
 			<br />
 			<div class="row">
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>2004-2008</h3><p>Relative Risk of Colorectal Cancer to the whole state.</p>
+					<h3 class='mapTitle'>2004-2008</h3>
 					<div id="divMap1"></div>
 					<div id="divHist1"></div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>2009-2013</h3><p>Private drinking well nitrate concentration (mg/L).</p>
+					<h3 class='mapTitle'>2009-2013</h3>
 					<div id="divMap2"></div>
 					<div id="divHist2"></div>
 				</div>
@@ -133,7 +133,7 @@
 
 			<div class="row">
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>2014-2018</h3><p>Percentage of population with high housing cost burden.</p>
+					<h3 class='mapTitle'>2014-2018</h3>
 					<div id="divMap3"></div>
 					<div id="divHist3"></div>
 				</div>
@@ -177,9 +177,9 @@
 	// att1format: enter the d3.format string to display the variables in the format you like
 	// Check this link on how to specify the desired format:
 	// https://observablehq.com/@d3/d3-format
-	var att1 = '04_08_rr', att1alias = 'Relative Risk', att1format = '.2f',
-	att2 = '09_13_rr', att2alias =  'Nitrate Concentration', att2format = '.2f',
-	att3 = '14_18_rr', att3alias = '% Housing Burden Population', att3format = '.2f'
+	var att1 = '04_08_rr', att1alias = '2004-2008', att1format = '.2f',
+	att2 = '09_13_rr', att2alias =  '2009-2013', att2format = '.2f',
+	att3 = '14_18_rr', att3alias = '2014-2018', att3format = '.2f'
 
  	// enter below all variables that should be recalculated. The order of attributes should match with
 	// the list of multiply and divide by values
@@ -373,7 +373,7 @@
 						(histHeight + 35) + ')')
 						.style('font-family', 'sans-serif')
 						.style('text-anchor', 'middle')
-						.text(d.ax);
+						// .text(d.ax);
 
 						// tooltip for maps
 						var tooltipD3 = d3.select(d.map)
