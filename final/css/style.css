@@ -1,0 +1,164 @@
+body {
+  font-family: sans-serif;
+}
+
+.row {
+	display: table-row;
+}
+
+#map {
+  width: 960px;
+  height: 500px;
+}
+
+#pcp {
+  width: 960px;
+  height: 200px;
+}
+
+#legend{
+  /* width: 120px; */
+  height: 180px;
+}
+
+.legendQuant {
+  font-weight: normal;
+}
+
+svg {
+  display: block;
+  margin: auto;
+  position: absolute;
+}
+
+.page-header {
+	margin-top: 15px;
+}
+.panel-body {
+	padding-top: 5px;
+}
+
+.navbar-nav {
+  float: right;
+}
+
+/* MAP FORMATTING */
+.map {
+	border: medium solid #999;
+}
+
+.regions {
+  stroke: #fff;
+  stroke-width: .75px;
+  opacity: 0.8;
+  fill-opacity: 0.8;
+}
+
+
+.infolabel {
+	float: right;
+	width: 200px;
+	height: 120px;
+	color: #fff;
+	background-color: #000;
+	border: solid thin #fff;
+	padding: 5px;
+	display: hidden;
+	position: absolute;
+	z-index: 100;
+}
+
+.infolabel h1 {
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	line-height: 1em;
+}
+
+.infolabel b {
+	float: left;
+}
+
+.labelname {
+	display: inline-block;
+	float: right;
+	margin: -25px 0px 0px 50px;
+	font-size: 1em;
+	font-weight: bold;
+	position: absolute;
+}
+
+/* PARALLEL COORDINATES FORMATTING */
+.axis .title {
+  font-size: 10px;
+  fill: #222;
+}
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+
+.axis .tick text {
+  fill: #222;
+  pointer-events: none;
+}
+.axis:hover line,
+.axis:hover path,
+.axis.active line,
+.axis.active path {
+  fill: none;
+  stroke: #222;
+  stroke-width: 1px;
+}
+
+.axis:hover .title {
+  font-weight: bold;
+}
+
+.axis:hover .tick text {
+  opacity: 1;
+}
+
+.axis.active .title {
+  font-weight: bold;
+}
+
+.axis.active .tick text {
+  opacity: 1;
+  font-weight: bold;
+}
+
+#label {
+  padding: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 200px;
+}
+
+#info-box {
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  top: 50px;
+  left: 0px;
+  width: 450px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  font-size: 12px;
+  text-align: left;
+  line-height: 10px;
+}
+
+#label:hover #info-box {
+  visibility: visible;
+}
