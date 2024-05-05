@@ -48,11 +48,6 @@
         "% Impoverished Population",
         "% Housing Units that are Mobile Home",
         "Per Capita Income",
-        "% Percent of households spending more than 40% of their income on housing costs",
-        "% Population with no insurance",
-        "% Population Speaking English Less than Very Well",
-        "% Population with no bachelor's degree over 25",
-        "% Population with Less than 12th Grade Education over 25",
         "Relative Risk of Colorectal Cancer. It compares the cancer incidence probability in each unit against statewide rates (C. Ward et al., 2019). So a tract with the value higher than 1 means the tract is at higher risk to Colorectal cancer risk than the average level of the whole state."
     ]
 }
