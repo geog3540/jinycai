@@ -1,5 +1,5 @@
 
-var polygonJSONFile = "data/IA_SVI_tract.json";
+var polygonJSONFile = "data/IA_SVI_tract2.json";
 var sensitivityJSONFile = "data/sensitivity variables.json"
 //change the center of your map in setView
 var centerLatitude = 41.8780, centerLongitude = -93.0977;
