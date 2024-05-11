@@ -98,17 +98,29 @@
 			</div>
 			<hr />
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="info">
+					<p>This small multiple map shows the population groups change from 2009 to 2018 in Iowa state.</p>
+					<p>For the race/minority population groups, the White population decreased in north-west, north and middle areas, 
+						while the Hispanics and Black population increased in those regions. 
+						For the socio-economic subgroups, the poverty population decreased in the north-west areas but got more in the south Iowa state
+						The general per capita income increasde across the whole state, which could indicate that there was a growing gap in wealth in the south areas.  
+						For the education level, the overall percentage of population with no college degree decreased in a spatial pattern spreading from the major city areas.</p>
+						<p>QWHITE: %whites population; QBLACK: %Black Population; 
+							QHISP: %Hispanic Population; QPOVTY: % population with income in the past 12 months below poverty level;
+							PERCAP: Per Capita Income; QNOBD: % Population with no bachelor's degree over 25; POPDEN: Population Density (per sq km) </p>
+				</div>
+				<div class="col-sm-6">
 					<p>Data from <a
-							href="https://shri.public-health.uiowa.edu/cancer-data/interactive-iowa-data-tools/iowa-cancer-maps/colorectal-cancer-incidence/">Iowa
-							Cancer Registry</a>.
+							href="https://www.census.gov/data/developers/data-sets/acs-5year.2018.html#list-tab-1806015614">Iowa
+							American Community Survey 5 year dataset</a>.
+							
 						<br> Mapped by Jinyi Cai.
 					</p>
-				</div>
-				<div class='col-sm-8 mapButtons'>
 					<div id="variableDropdown"></div>
+				</div>
+				<div class='col-sm-6 mapButtons'>
+					<div></div>
 					<span class="pull-right">
-						
 						<b>Classes: </b>
 						<select id="classDropdown">
 							<option value="3">3</option>
@@ -128,13 +140,13 @@
 			</div>
 			<br />
 			<div class="row">
-				<div class="col-sm-6">
-					<h3 class='mapTitle'>2004-2008</h3>
+				<div class="col-sm-12">
+					<h3 class='mapTitle'>2009-2013</h3>
 					<div id="divMap1"></div>
 					<div id="divHist1"></div>
 				</div>
-				<div class="col-sm-6">
-					<h3 class='mapTitle'>2009-2013</h3>
+				<div class="col-sm-12">
+					<h3 class='mapTitle'>2014-2018</h3>
 					<div id="divMap2"></div>
 					<div id="divHist2"></div>
 				</div>
@@ -163,10 +175,10 @@
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		// TODO: Change the variables below to customize the small multiples interface for your data
-		var polygonJSONFile = 'data/IA_SVI_tract2.json'
+		var polygonJSONFile = 'data/IA_SVI_tract3.json'
 		// change the projection if needed *d3.geoAlbers()*
 		var projection = d3.geoTransverseMercator();
-		var widthheightRatio = 0.5;
+		var widthheightRatio = 0.3;
 		// Relative placement of legend that ranges between 0 and 1.
 		// 0 is the start, whereas 1 i the end of each panel.
 		// If you want to put the legend on the left, then use 0.
@@ -178,25 +190,8 @@
 
 		// Find the abbreviations of color names from https://colorbrewer2.org/
 		var colors = colorbrewer.YlGnBu;
-
-		// Chart/map attributes (variables) and formats based on the divs defined above
-		// For attribute 1 (the same for all others), see the description of the parameters below.
-		// att1: the actual name of the attribute on the file
-		// att1: the alias that you would like to use. This could be anything you can type.
-		// att1format: enter the d3.format string to display the variables in the format you like
-		// Check this link on how to specify the desired format:
-		// https://observablehq.com/@d3/d3-format
-		var att1 = '13_QHISP', att1alias = '2009-2013 Hispanics', att1format = '.2f',
-			att2 = '18_QHISP', att2alias = '2014-2018 Hispanics', att2format = '.2f',
-			att3 = '13_PERCAP', att3alias = '2009-2013 Income', att3format = '.2f'
-		att4 = '18_PERCAP', att4alias = '2014-2018 Income', att4format = '.0f'
-		att5 = '13_QNOBD', att5alias = '2009-2013 No Bachelor\'s Degree', att5format = '.2f'
-		att6 = '18_QNOBD', att6alias = '2014-2018 No Bachelor\'s Degree', att6format = '.2f'
-		att7 = '13_POPDEN', att7alias = '2009-2013 Population Density', att7format = '.0f'
-		att8 = '18_POPDEN', att8alias = '2014-2018 Population Density', att8format = '.0f'
-
-		var popVariables = ['QHISP','QBLACK', 'QPOVTY', 'PERCAP', 'QNOBD', 'POPDEN']
-		var currentVarible = 'QHISP'
+		var popVariables = ['QWHITE', 'QHISP','QBLACK', 'QPOVTY', 'PERCAP', 'QNOBD', 'POPDEN']
+		var currentVarible = 'QWHITE'
 		// enter below all variables that should be recalculated. The order of attributes should match with
 		// the list of multiply and divide by values
 		//   var attributesToBeNormalized = [att1, att4];
@@ -246,6 +241,14 @@
 		current_scale = quantile_scale;	// Save scales as global scale variable
 
 		charts = [
+		{
+				'map': '#divMap1', 'hist': '#divHist1', 'form': '.2f',
+				'var': '13_QWHITE', 'ax': 'QWHITE'
+			},
+			{
+				'map': '#divMap2', 'hist': '#divHist2', 'form': '.2f',
+				'var': '18_QWHITE', 'ax': 'QWHITE'
+			},
 		{
 				'map': '#divMap1', 'hist': '#divHist1', 'form': '.2f',
 				'var': '13_QHISP', 'ax': 'Hispanics'
@@ -325,7 +328,7 @@
 			.shapeHeight(5)
 			.shapePadding(10)
 			.orient('vertical')
-			.labelFormat(d3.format(att1format))
+			.labelFormat(d3.format('.2f'))
 			.useClass(false)
 			.scale(current_scale);
 
@@ -499,7 +502,7 @@
 			//add a select element for the dropdown menu
 			var dropdown = d3.select("#variableDropdown")
 				.append("div")
-				.html("<span>variables: </span>")
+				.html("<b>Variables: </b>")
 				.append("select")
 				.on("change", function () { changeChartAttribute(this.value, data) }); //changes expressed attribute
 
