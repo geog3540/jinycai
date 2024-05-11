@@ -21,3 +21,11 @@ body {
 .pagination {
   margin-bottom: 30px;
 }
+
+.introduction {
+  margin: 30px;
+}
+
+.intro-img {
+  margin: 10px 23%;
+}
