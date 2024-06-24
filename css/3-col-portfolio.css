@@ -24,8 +24,12 @@ body {
 
 .introduction {
   margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .intro-img {
-  margin: 10px 23%;
+  /* margin: 10px 23%; */
+  width: 450px;
 }
